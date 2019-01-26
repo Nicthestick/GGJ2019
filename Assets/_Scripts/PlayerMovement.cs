@@ -49,6 +49,6 @@ public class PlayerMovement : NetworkBehaviour
 
     public override void OnStartLocalPlayer()
     {
-        GetComponent<MeshRenderer>().material.color = Color.white;
+        GetComponentInChildren<MeshRenderer>().material.color = Color.white;
     }
 }
