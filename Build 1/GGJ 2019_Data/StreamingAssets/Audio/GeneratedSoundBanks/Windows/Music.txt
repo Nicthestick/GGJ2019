@@ -1,6 +1,0 @@
-Event	ID	Name			Wwise Object Path	Notes
-	2209875393	Play_GGJ2019_2			\Default Work Unit\Play_GGJ2019_2	
-
-In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	552557896	GGJ2019_3	D:\GGJ 2019\GGJ 2019_WwiseProject\.cache\Windows\SFX\GGJ2019_3_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\GGJ2019_3\GGJ2019_3		5210652
-

@@ -12,6 +12,8 @@ public class Fight : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    public bool Attack = false;
+
     private void Update()
     {
         // Get a copy of your forward vector
@@ -23,10 +25,24 @@ public class Fight : MonoBehaviour
         if(Input.GetAxis("Fire1") != 0)
         {
 
-            Debug.Log("FUCK");
-            
+            Attack = true;
+
+            Debug.Log(Attack);
+
+        }
+        else
+        {
+            Attack = false;
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            Debug.Log(Attack + " player");
+        }
     }
 
 

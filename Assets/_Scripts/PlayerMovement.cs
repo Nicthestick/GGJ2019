@@ -18,10 +18,19 @@ public class PlayerMovement : NetworkBehaviour
         speed = 30f;
     }
 
+    public Vector3 Playerfwd;
+    public float headingAngle;
+
     void Update()
     {
 
-        if(!isLocalPlayer)
+        // Get a copy of your forward vector
+        Playerfwd = transform.forward;
+        // Zero out the y component of your forward vector to only get the direction in the X,Z plane
+        Playerfwd.y = 0;
+        headingAngle = Quaternion.LookRotation(Playerfwd).eulerAngles.y;
+
+        if (!isLocalPlayer)
         {
             return;
         }
