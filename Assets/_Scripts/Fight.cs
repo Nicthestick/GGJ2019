@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Fight : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float thrust;
+    public Rigidbody rb;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        rb.AddForce(transform.forward * thrust);
     }
 }
