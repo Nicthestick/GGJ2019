@@ -7,7 +7,6 @@ public class KnockBack : NetworkBehaviour
 {
     private Health healthscript;
 
-    // Start is called before the first frame update
     void Start()
     {
         healthscript = GetComponent<Health>();
@@ -19,14 +18,11 @@ public class KnockBack : NetworkBehaviour
         healthscript.EventKnock -= PlayerKnockBack;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void PlayerKnockBack()
     {
+         Transform trans = GetComponent<Transform>();
+        trans.position = trans.position + new Vector3(2,0,0);
+
 
     }
 }
