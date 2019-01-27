@@ -1,50 +1,65 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Fight : MonoBehaviour
+public class Fight : NetworkBehaviour
 {
-    public float thrust;
-    public Rigidbody rb;
+    private int damage = 25;
+    private float range = 200;
+    [SerializeField] private Transform camTrans;
+    private RaycastHit hit;
 
-    void Start()
+
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        
     }
 
-    public bool Attack = false;
 
     private void Update()
     {
-        // Get a copy of your forward vector
-        Vector3 forward = transform.forward;
-        // Zero out the y component of your forward vector to only get the direction in the X,Z plane
-        forward.y = 0;
-        float headingAngle = Quaternion.LookRotation(forward).eulerAngles.y;
-
-        if(Input.GetAxis("Fire1") != 0)
-        {
-
-            Attack = true;
-
-            Debug.Log(Attack);
-
-        }
-        else
-        {
-            Attack = false;
-        }
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+
+
+    }
+
+    void checkPillowHit()
+    {
+        if(!isLocalPlayer)
         {
-            Debug.Log(Attack + " player");
+            return;
+        }
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            attack();
         }
     }
 
+    void attack()
+    {
+        if(Physics.Raycast(camTrans.TransformPoint(0,0,0.5f), camTrans.forward, out hit, range))
+        {
+            Debug.Log(hit.transform.tag);
 
+            if(hit.transform.tag == "Player")
+            {
+                string Uidentity = hit.transform.name;
+                CmdTellServerHit(Uidentity, damage);
+            }
+        }
+    }
+
+    [Command]
+    void CmdTellServerHit(string UniquePlayerID, int dmg)
+    {
+        GameObject go = GameObject.Find(UniquePlayerID);
+        go.GetComponent<Health>().DeductHealth(dmg);
+        //tells server who has been hit.
+    }
 
 }
