@@ -37,20 +37,6 @@ public class PlayerMovement : NetworkBehaviour
         forward.y = 0;
         headingAngle = Quaternion.LookRotation(forward).eulerAngles.y;
 
-        if (isLocalPlayer)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Attack = true;
-            }
-            else
-            {
-                Attack = false;
-            }
-        }
-
-
-
         // Get a copy of your forward vector
         Playerfwd = transform.forward;
         // Zero out the y component of your forward vector to only get the direction in the X,Z plane
@@ -85,40 +71,8 @@ public class PlayerMovement : NetworkBehaviour
         //Making the character move
         controller.Move(moveDirection * Time.deltaTime);
 
-
-        //attacking scripts
-
-
-
     }
-
-    public int instID;
-    public Vector3 newPos;
-    //attacking
     
-    [Command]
-    private void OnTriggerStay( Collider other)
-    {
-        instID = other.GetInstanceID();
-        if (other.gameObject.tag == "Player" && instID == gameObject.GetInstanceID())
-        {
-            other.gameObject.transform.position = other.gameObject.transform.position - forward;
-            newPos = other.gameObject.transform.position;
-
-
-            RpcHit(newPos);
-
-        }
-    }
-
-    
-    [ClientRpc]
-    public void RpcHit(Vector3 newPos_)
-    {
-
-    }
-
-
     public override void OnStartLocalPlayer()
     {
         foreach (MeshRenderer variableName in GetComponentsInChildren<MeshRenderer>())
