@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8d5a11bd06da90543b4faa8b968b2cc2
+guid: b6c11aa17d0d4344c96c7063c56cba0e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -9,7 +9,12 @@ ModelImporter:
     3300000: //RootNode
     4300000: carpet_geo
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert3
+    second: {fileID: 2100000, guid: f5f73b2f1a21be34b9c835707ec1e46f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -62,7 +67,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 0
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
